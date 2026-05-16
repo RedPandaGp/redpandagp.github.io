@@ -72,6 +72,10 @@
             to { opacity: 1; }
         }
 
+        /* 语言切换器逻辑 */
+        body.lang-zh .en { display: none !important; }
+        body.lang-en .zh { display: none !important; }
+
         /* 导航栏 */
         header {
             display: flex;
@@ -139,6 +143,11 @@
             letter-spacing: 0.5px;
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
         nav a {
             text-decoration: none;
             color: var(--text-gray);
@@ -162,6 +171,25 @@
 
         nav a:hover::after {
             width: 100%;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--text-gray);
+            color: var(--text-gray);
+            border-radius: 4px;
+            padding: 0.15rem 0.6rem;
+            cursor: pointer;
+            margin-left: 2rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--accent-orange);
+            color: var(--accent-orange);
         }
 
         /* 英雄区块 */
@@ -411,16 +439,18 @@
             justify-content: center;
             background-color: var(--accent-orange);
             color: #fff;
-            border-radius: 6px; /* 改为小圆角方形，更现代 */
+            border-radius: 6px; 
             font-size: 0.85rem;
             font-weight: 700;
             flex-shrink: 0;
         }
         
-        /* 为不同平台定制一点专属颜色提示（保持统一饱和度） */
+        /* 专属颜色提示 */
         .icon-bili { background-color: #fb7299 !important; }
         .icon-qq { background-color: #12b7f5 !important; }
         .icon-heybox { background-color: #1e1e1e !important; }
+        .icon-discord { background-color: #5865F2 !important; }
+        .icon-itch { background-color: #fa5c5c !important; }
 
         .contact-info-block {
             display: flex;
@@ -470,8 +500,16 @@
                 gap: 1rem;
                 padding: 1rem;
             }
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
             nav a {
-                margin: 0 0.8rem;
+                margin: 0;
+            }
+            .lang-btn {
+                margin-left: 0;
             }
             .hero {
                 padding: 5rem 1rem;
@@ -483,7 +521,7 @@
                 grid-template-columns: 1fr;
             }
             .contact-methods {
-                grid-template-columns: 1fr; /* 手机端单列显示 */
+                grid-template-columns: 1fr; 
             }
             .section-title {
                 font-size: 1.8rem;
@@ -491,19 +529,32 @@
         }
     </style>
 </head>
-<body>
+<body class="lang-zh">
 
     <div class="grid-background"></div>
 
     <header class="fade-in">
         <a href="#" class="brand">
-            <img src="images/logo.png" alt="小熊猫工作室 Logo" class="winking">
-            <h1>小熊猫工作室</h1>
+            <img src="images/logo.png" alt="Red Panda Studio Logo" class="winking">
+            <h1>
+                <span class="zh">小熊猫工作室</span>
+                <span class="en">Red Panda Studio</span>
+            </h1>
         </a>
         <nav>
-            <a href="#games">游戏作品</a>
-            <a href="#about">关于我们</a>
-            <a href="#contact">联系合作</a>
+            <a href="#games">
+                <span class="zh">游戏作品</span>
+                <span class="en">Games</span>
+            </a>
+            <a href="#about">
+                <span class="zh">关于我们</span>
+                <span class="en">About</span>
+            </a>
+            <a href="#contact">
+                <span class="zh">联系合作</span>
+                <span class="en">Contact</span>
+            </a>
+            <button id="lang-toggle" class="lang-btn">EN</button>
         </nav>
     </header>
 
@@ -513,24 +564,51 @@
                 <img src="images/logo.png" alt="Red Panda Studio Logo">
             </div>
         </div>
-        <h2>创造<span>纯粹</span>的互动叙事</h2>
-        <p class="fade-in-delayed">我们是一家致力于开发高质量视觉小说与叙事驱动游戏的独立开发团队。用代码构建世界，用文字编织命运。</p>
+        <h2>
+            <span class="zh">创造<span>纯粹</span>的互动叙事</span>
+            <span class="en">Creating <span>Pure</span> Interactive Narratives</span>
+        </h2>
+        <p class="fade-in-delayed">
+            <span class="zh">我们是一家致力于开发高质量视觉小说与叙事驱动游戏的独立开发团队。用代码构建世界，用文字编织命运。</span>
+            <span class="en">We are an indie game studio dedicated to developing high-quality visual novels and narrative-driven games. Building worlds with code, weaving destinies with words.</span>
+        </p>
         <div class="divider fade-in-delayed"></div>
     </section>
 
     <section id="games" class="section">
-        <h2 class="section-title">准备发行</h2>
+        <h2 class="section-title">
+            <span class="zh">准备发行</span>
+            <span class="en">Upcoming</span>
+        </h2>
         
         <div class="game-showcase" data-tilt data-tilt-max="10" data-tilt-perspective="1500" data-tilt-glare data-tilt-max-glare="0.3">
             <div class="game-info">
-                <h3>《模联人》</h3>
+                <h3>
+                    <span class="zh">《模联人》</span>
+                    <span class="en">MUNer</span>
+                </h3>
                 <div class="tags">
-                    <span class="tag">视觉小说</span>
-                    <span class="tag">多分支叙事</span>
-                    <span class="tag">独立游戏</span>
-                    <span class="tag">Ren'Py 底层定制</span>
+                    <span class="tag">
+                        <span class="zh">视觉小说</span>
+                        <span class="en">Visual Novel</span>
+                    </span>
+                    <span class="tag">
+                        <span class="zh">多分支叙事</span>
+                        <span class="en">Branching Narrative</span>
+                    </span>
+                    <span class="tag">
+                        <span class="zh">独立游戏</span>
+                        <span class="en">Indie Game</span>
+                    </span>
+                    <span class="tag">
+                        <span class="zh">Ren'Py 底层定制</span>
+                        <span class="en">Ren'Py Customization</span>
+                    </span>
                 </div>
-                <p>本世纪初，一场学生时代的模拟联合国活动交织着感情冲突和恶性事件改变了在场者的人生，多年后，星散的少年们展开了一系列复仇和重逢，交织着友情，爱情，野心与梦想的破碎。本游戏由真实事件改编。游戏目前已在 Steam 平台开设商店页，欢迎添加愿望单支持我们！</p>
+                <p>
+                    <span class="zh">本世纪初，一场学生时代的模拟联合国活动交织着感情冲突和恶性事件改变了在场者的人生，多年后，星散的少年们展开了一系列复仇和重逢，交织着友情，爱情，野心与梦想的破碎。本游戏由真实事件改编。游戏目前已在 Steam 平台开设商店页，欢迎添加愿望单支持我们！</span>
+                    <span class="en">At the beginning of this century, a student-led Model United Nations event, intertwined with emotional conflicts and critical incidents, forever altered the lives of those present. Years later, the scattered youths embark on a journey of revenge and reunion, interwoven with friendship, love, ambition, and shattered dreams. Based on true events. The game's Steam store page is now live, please add it to your wishlist to support us!</span>
+                </p>
             </div>
             
             <div class="steam-widget-container">
@@ -540,43 +618,78 @@
     </section>
 
     <section id="about" class="section">
-        <h2 class="section-title">了解我们</h2>
+        <h2 class="section-title">
+            <span class="zh">了解我们</span>
+            <span class="en">About Us</span>
+        </h2>
         <div class="about-cards">
             <div class="stacked-card" data-tilt data-tilt-max="10">
-                <h3>我们的愿景</h3>
-                <p>小熊猫工作室的名字源于我们在开发过程中渴望保持的专注与温和。我们精通 Ren'Py 等引擎的底层定制与复杂逻辑编写，致力于突破传统文字游戏的表现边界，为玩家提供沉浸式的阅读与游玩体验。</p>
+                <h3>
+                    <span class="zh">我们的愿景</span>
+                    <span class="en">Our Vision</span>
+                </h3>
+                <p>
+                    <span class="zh">小熊猫工作室的名字源于我们在开发过程中渴望保持的专注与温和。我们精通 Ren'Py 等引擎的底层定制与复杂逻辑编写，致力于突破传统文字游戏的表现边界，为玩家提供沉浸式的阅读与游玩体验。</span>
+                    <span class="en">The name Red Panda Studio originates from the focus and gentleness we strive to maintain during development. We specialize in deep customization and complex logic scripting for engines like Ren'Py, aiming to push the boundaries of traditional text-based games and provide players with immersive interactive experiences.</span>
+                </p>
             </div>
             
             <div class="stacked-card contact-card" data-tilt data-tilt-max="10" id="contact">
-                <h3>联系合作</h3>
-                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">我们对发行合作、媒体报道以及玩家反馈始终保持开放态度。欢迎通过以下方式交流：</p>
+                <h3>
+                    <span class="zh">联系合作</span>
+                    <span class="en">Contact & Collab</span>
+                </h3>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">
+                    <span class="zh">我们对发行合作、媒体报道以及玩家反馈始终保持开放态度。欢迎通过以下方式交流：</span>
+                    <span class="en">We are always open to publishing partnerships, media coverage, and player feedback. Feel free to reach out through the following channels:</span>
+                </p>
                 <ul class="contact-methods">
                     <li class="contact-item">
                         <span class="icon icon-bili">B</span>
                         <div class="contact-info-block">
-                            <span>Bilibili 频道</span>
+                            <span class="zh">Bilibili 频道</span>
+                            <span class="en">Bilibili Channel</span>
                             <a href="https://space.bilibili.com/67994217" target="_blank">@小熊猫工作室</a>
                         </div>
                     </li>
                     <li class="contact-item">
                         <span class="icon icon-heybox">黑</span>
                         <div class="contact-info-block">
-                            <span>小黑盒 (ID: 73345072)</span>
+                            <span class="zh">小黑盒 (ID: 73345072)</span>
+                            <span class="en">Xiaoheihe (ID: 73345072)</span>
                             <a href="https://www.xiaoheihe.cn/" target="_blank">@小熊猫工作室</a>
                         </div>
                     </li>
                     <li class="contact-item">
                         <span class="icon icon-qq">Q</span>
                         <div class="contact-info-block">
-                            <span>官方玩家群</span>
+                            <span class="zh">官方玩家群</span>
+                            <span class="en">Official QQ Group</span>
                             <strong>1101382434</strong>
+                        </div>
+                    </li>
+                    <li class="contact-item">
+                        <span class="icon icon-discord">D</span>
+                        <div class="contact-info-block">
+                            <span class="zh">Discord 社区</span>
+                            <span class="en">Discord Server</span>
+                            <a href="https://discord.gg/uRJSt9wDy7" target="_blank">Join Server</a>
+                        </div>
+                    </li>
+                    <li class="contact-item">
+                        <span class="icon icon-itch">io</span>
+                        <div class="contact-info-block">
+                            <span class="zh">itch.io 主页</span>
+                            <span class="en">itch.io Page</span>
+                            <a href="https://redpandastudio.itch.io/" target="_blank">@RedPandaStudio</a>
                         </div>
                     </li>
                     <li class="contact-item">
                         <span class="icon">✉</span>
                         <div class="contact-info-block">
-                            <span>商务与合作</span>
-                            <a href="mailto:hello@redpandastudio.com">Email 联系</a>
+                            <span class="zh">商务与合作</span>
+                            <span class="en">Business Email</span>
+                            <a href="mailto:hello@redpandastudio.com">Email Us</a>
                         </div>
                     </li>
                 </ul>
@@ -585,19 +698,27 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 小熊猫工作室 (Red Panda Studio). All Rights Reserved.</p>
+        <p>&copy; 2026 
+            <span class="zh">小熊猫工作室</span>
+            <span class="en">Red Panda Studio</span>. All Rights Reserved.
+        </p>
         <p style="font-size: 0.8rem; margin-top: 1rem;">Powered by Github Pages & Love for Indie Games</p>
     </footer>
 
     <script>
+        // 初始化 3D 悬浮效果
         VanillaTilt.init(document.querySelectorAll("[data-tilt]"));
 
+        // Logo 眨眼动画
         window.addEventListener('load', () => {
             const brandLogo = document.querySelector('.brand img');
-            brandLogo.classList.add('winking');
-            setTimeout(() => brandLogo.classList.remove('winking'), 2500); 
+            if(brandLogo) {
+                brandLogo.classList.add('winking');
+                setTimeout(() => brandLogo.classList.remove('winking'), 2500); 
+            }
         });
 
+        // 滚动入场检测
         const sections = document.querySelectorAll('.section');
         const observerOptions = {
             root: null,
@@ -616,6 +737,32 @@
         sections.forEach(section => {
             section.classList.add('fade-in-delayed');
             sectionObserver.observe(section);
+        });
+
+        // 语言切换功能
+        const langBtn = document.getElementById('lang-toggle');
+        const body = document.body;
+        
+        const titles = {
+            zh: "小熊猫工作室 | Red Panda Studio - 创造纯粹的互动叙事",
+            en: "Red Panda Studio | Creating Pure Interactive Narratives"
+        };
+
+        langBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (body.classList.contains('lang-zh')) {
+                // 切换到英文
+                body.classList.remove('lang-zh');
+                body.classList.add('lang-en');
+                langBtn.textContent = '中';
+                document.title = titles.en;
+            } else {
+                // 切换到中文
+                body.classList.remove('lang-en');
+                body.classList.add('lang-zh');
+                langBtn.textContent = 'EN';
+                document.title = titles.zh;
+            }
         });
     </script>
 </body>
